@@ -140,11 +140,12 @@ fn parse(input: Vec<Token>) -> Vec<Branch> {
     branches
 }
 
-pub fn build(code: String) {
+pub fn build(code: String) -> ByteStream {
     let lexed = lex(code);
     let parsed = parse(lexed);
     let mut compiler = Compiler::new();
     compiler.compile(parsed);
+    compiler.bytecode
 }
 
 //the builder, creates the bytecode
