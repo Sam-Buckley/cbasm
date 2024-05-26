@@ -52,7 +52,8 @@ enum ArgType {
     Reg,
     StackDeref,
     HeapDeref,
-    Label
+    Label,
+    Jmp
 }
 impl From<ArgType> for Types {
     fn from(arg: ArgType) -> Types {
@@ -62,6 +63,7 @@ impl From<ArgType> for Types {
             ArgType::StackDeref => Types::DerefStack,
             ArgType::HeapDeref => Types::DerefHeapReg,
             ArgType::Label => Types::TypeFunc,
+            ArgType::Jmp => Types::TypeJmp,
         }
     }
 }
@@ -94,6 +96,10 @@ fn parse_line(input: Token) -> Branch {
         } else if arg.starts_with(":") { 
             arg.retain(|c| c != ':');
             ArgType::Label
+        } else if arg.starts_with(";") {
+            arg.retain(|c| c != ';');
+            ArgType::Jmp
+    
         } else {
             //turn hex into base 10 u64
             arg = u64::from_str_radix(&*arg, 16).unwrap().to_string();
@@ -128,6 +134,12 @@ fn parse(input: Vec<Token>) -> Vec<Branch> {
                     j.arg = registers.iter().position(|x| x == &j.arg).unwrap().to_string();
                 }
                 ArgType::Label => {
+                    if !functions.contains(&j.arg) {
+                        functions.push(j.arg.clone());
+                    }
+                    j.arg = functions.iter().position(|x| x == &j.arg).unwrap().to_string();
+                }
+                ArgType::Jmp => { //do the same as label
                     if !functions.contains(&j.arg) {
                         functions.push(j.arg.clone());
                     }

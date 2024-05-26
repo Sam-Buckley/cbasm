@@ -4,31 +4,13 @@ version = 3
 
 [[package]]
 name = "cbasm"
-version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5c7b928765708ba82396ff8f0b41e34bb6b6896498a686fec4739605ca82e3ab"
+version = "0.1.8"
 dependencies = [
- "cbvm 0.5.8",
-]
-
-[[package]]
-name = "cbasm"
-version = "0.1.5"
-dependencies = [
- "cbvm 0.6.1",
+ "cbvm",
 ]
 
 [[package]]
 name = "cbvm"
-version = "0.5.8"
+version = "0.6.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d302b667bd10b74c324dcc55a07463484148dae12928bf987ec85fec8998ea9d"
-
-[[package]]
-name = "cbvm"
-version = "0.6.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ea6e2106a07d37b80028346118e4ca71d059b63bb4cfe0d9c74d017465d61277"
-dependencies = [
- "cbasm 0.1.4",
-]
+checksum = "00a96c19b113387acb2e7cf10d2f83d3f68e098dc236ae8a8214cfc5c41c9802"

@@ -1,12 +1,16 @@
 [package]
 name = "cbasm"
-version = "0.1.5"
+version = "0.1.8"
 edition = "2021"
 description = "Asm assembler & dissasembler for cbvm bytecode"
 license = "GPL-3.0"
 repository = "https://github.com/Sam-Buckley/cbasm/"
 
+[[bin]]
+name = "cbasm"
+path = "src/lib.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cbvm = "0.6.2"
+cbvm = "0.6.5"
