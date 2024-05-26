@@ -1,4 +1,4 @@
-#![allow(unused_imports)]
+#![allow(unused_imports, dead_code, unused_variables)]
 //basic asm for cbvm
 use std::io::{Read, Write};
 use cbvm::builder::bytes::{Byte, ByteStream};
@@ -138,6 +138,13 @@ fn parse(input: Vec<Token>) -> Vec<Branch> {
         }
     }
     branches
+}
+
+pub fn build(code: String) {
+    let lexed = lex(code);
+    let parsed = parse(lexed);
+    let mut compiler = Compiler::new();
+    compiler.compile(parsed);
 }
 
 //the builder, creates the bytecode
